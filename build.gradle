@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id "io.qameta.allure" version "2.12.0"
+}
+
+group = 'brsky.k'
+version = '1.0-SNAPSHOT'
+
+allure {
+    report {
+        version.set("2.19.0")
+    }
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set("2.17.3")
+            }
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    testImplementation 'com.codeborne:selenide:7.3.3'
+    testImplementation 'org.slf4j:slf4j-simple:2.0.7'
+    testImplementation 'io.qameta.allure:allure-selenide:2.28.1'
+    testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.10.0')
+}
+
+test {
+    useJUnitPlatform()
+}
